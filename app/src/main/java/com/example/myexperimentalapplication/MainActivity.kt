@@ -56,9 +56,19 @@ class MainActivity : AppCompatActivity() {
 //                また、modeに命名数を渡す場合には、
                 originalValue.replace("[0-9,]|[.]\\b".toRegex(), ""))
 
+//      ★重要：modeの値に応じた別の処理を場合分けして行うには、
+        var mode_number: Int =
+            when (originalValue.replace("[0-9,]|[.]\\b".toRegex(), "")) {
+                " mill." -> 0
+                " bn." -> 1
+                " trillion" -> 2
+                else -> 3
+            }
 
+        leftTextView.text = "MODE_NUMBER $mode_number"
 
-//        textView.text = intStr.toString()
+        val rightTextView: TextView = findViewById(R.id.targetNumber2)
+        rightTextView.text = originalValue
 //        ------------------------------------------
 
     }
