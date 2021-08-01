@@ -9,9 +9,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+//        Kotlin内で要素のテキストを変更するコード
         val textView: TextView = findViewById(R.id.textArea)
         textView.text = "modified text"
 
+//        javaに引数を渡して、java経由でテキストを変更するコード
         textView.text = SubComponent.javaModified("this works fine!")
+
+//        Kotlinで定義した変数をjavaに渡してテキストを変更するコード
+        val otherTextView: TextView = findViewById(R.id.targetNumber)
+        val kotNumber: Int = 1980
+        val kotString: String = kotNumber.toString()
+        otherTextView.text = SubComponent.javaModified(kotString)
     }
 }
