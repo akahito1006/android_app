@@ -21,5 +21,10 @@ class MainActivity : AppCompatActivity() {
         val kotNumber: Int = 1980
         val kotString: String = kotNumber.toString()
         otherTextView.text = SubComponent.javaModified(kotString)
+
+//        ほかの要素のテキストを取得して、代入する。写す
+        val rightTextView: TextView = findViewById(R.id.targetNumber2)
+        otherTextView.text = rightTextView.text
+
     }
 }
