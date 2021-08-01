@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         var value: Int = 1
         var mode: String = "bn."
 //      bnがある場合、bnを消して、modeにbnを格納しておく
-//        ------ここを使う-----
+//        ------ここを使う?-----
         if (answer.indexOf(" bn.") != -1) {
             value = answer.replace(" bn.", "").toInt()
             mode = " bn."
@@ -36,16 +36,30 @@ class MainActivity : AppCompatActivity() {
 //          説明・・・呼び出される関数は、さらにjava内で変数の受け渡しの都合から別の関数を利用しmodeを処理している。
         leftTextView.text = SubComponent.javaModified(value.toString(), mode)
 
+
 //      -----カンマを付けるアルゴリズムの修正コード-----
 //      javaのFloatは数字でない文字を無視して型変換する。KotlinのtoFloatは無視できない
 //      命名数を含む文字（1,000 bn.）
-        val stringNumber: String = "12,345.67899 bn."
+        val originalValue: String = "12,345.67899 bn."
 //        val floatNumber: Float = stringNumber.toFloat()
 //        -> java.lang.NumberFormatException: For input string: "1,000 bn."
 //        -> 解決策: 型の変換が起きる直前に、正規表現でIntを抽出する
-            val intStr: String = stringNumber.replace("[^0-9.]|[.]\$".toRegex(), "")
-        val floatNumber: Float = intStr.toFloat()
+        val floatStr: String = originalValue.replace("[^0-9.]|[.]\$".toRegex(), "")
+        val floatNumber: Float = floatStr.toFloat()
+//        -> さらに、含まれる文字（命名数）をmodeに格納しておく
+        mode = originalValue.replace("[^a-z]|[,]".toRegex(), "")
 
-        textView.text = intStr.toString()
+//      結論：originalValueを変えずに、文字列を取り除いてjavaに値を渡すには、
+        textView.text =
+            SubComponent.javaModified(
+                originalValue.replace("[^0-9.]|[.]\$".toRegex(), "").toString(),
+//                また、modeに命名数を渡す場合には、
+                originalValue.replace("[0-9,]|[.]\\b".toRegex(), ""))
+
+
+
+//        textView.text = intStr.toString()
+//        ------------------------------------------
+
     }
 }
