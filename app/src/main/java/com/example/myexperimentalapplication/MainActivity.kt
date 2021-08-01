@@ -39,13 +39,13 @@ class MainActivity : AppCompatActivity() {
 //      -----カンマを付けるアルゴリズムの修正コード-----
 //      javaのFloatは数字でない文字を無視して型変換する。KotlinのtoFloatは無視できない
 //      命名数を含む文字（1,000 bn.）
-        val stringNumber: String = "1,000 bn."
+        val stringNumber: String = "12,345.67 bn."
 //        val floatNumber: Float = stringNumber.toFloat()
 //        -> java.lang.NumberFormatException: For input string: "1,000 bn."
 //        -> 解決策: 型の変換が起きる直前に、正規表現でIntを抽出する
-            val intStr: String = stringNumber.replace("[^0-9]".toRegex(), "")
-        val floatNumber: Float = intStr.toFloat()
+            val intStr: String = stringNumber.replace("[^0-9.]|[.]\$".toRegex(), "")
+//        val floatNumber: Float = intStr.toFloat()
 
-        textView.text = floatNumber.toString()
+        textView.text = intStr.toString()
     }
 }
