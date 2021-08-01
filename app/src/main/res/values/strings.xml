@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My experimental Application</string>
+    <string name="textArea">XXX written in string.xml</string>
 </resources>
