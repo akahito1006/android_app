@@ -11,5 +11,7 @@ class MainActivity : AppCompatActivity() {
 
         val textView: TextView = findViewById(R.id.textArea)
         textView.text = "modified text"
+
+        textView.text = SubComponent.javaModified("this works fine!")
     }
 }
