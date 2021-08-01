@@ -1,9 +1,14 @@
 package com.example.myexperimentalapplication;
 
 public class SubComponent {
-//    テキストを渡すと、セリフが追加されて、メッセージになる
-    public static String javaModified(String anyTextHere) {
+    //    テキストを渡すと、セリフが追加されて、メッセージになる
+    static String javaModified(String anyTextHere, String mode) {
         String givenText = anyTextHere;
-        return "text processed on java says... " + givenText;
+        return "java says " + givenText + catcher(mode);
+    }
+//    catcherの説明
+    static String catcher(String modeName) {
+        String mode = modeName;
+        return mode + " (appended!)";
     }
 }
