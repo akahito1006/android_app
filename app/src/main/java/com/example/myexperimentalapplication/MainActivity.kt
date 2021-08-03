@@ -49,16 +49,16 @@ class MainActivity : AppCompatActivity() {
 //        -> さらに、含まれる文字（命名数）をmodeに格納しておく
         mode = originalValue.replace("[^a-z]|[,]".toRegex(), "")
 
-//      結論：originalValueを変えずに、文字列を取り除いてjavaに値を渡すには、
+//      結論(update)：originalValueを変えずに、マイナス符号を除く文字列を取り除いてjavaに値を渡すには、
         textView.text =
             SubComponent.javaModified(
-                originalValue.replace("[^0-9.]|[.]\$".toRegex(), "").toString(),
+                originalValue.replace("[^0-9.-]|[.]\$".toRegex(), "").toString(),
 //                また、modeに命名数を渡す場合には、
-                originalValue.replace("[0-9,]|[.]\\b".toRegex(), ""))
+                originalValue.replace("[0-9,-]|[.]\\b".toRegex(), ""))
 
 //      ★重要：modeの値に応じた別の処理を場合分けして行うには、
         var mode_number: Int =
-            when (originalValue.replace("[0-9,]|[.]\\b".toRegex(), "")) {
+            when (originalValue.replace("[0-9,-]|[.]\\b".toRegex(), "")) {
                 " mill." -> 0
                 " bn." -> 1
                 " trillion" -> 2
