@@ -71,5 +71,11 @@ class MainActivity : AppCompatActivity() {
         rightTextView.text = originalValue
 //        ------------------------------------------
 
+        SubComponent.makeArray(rightTextView)
+        SubComponent.makeArray(leftTextView)
+
+        for (item in list) {
+            item.text = "append some text"
+        }
     }
 }
