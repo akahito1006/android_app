@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 //        2. Retrofitクラスのインスタンス化；Builderクラスを通してインスタンスを取得する
 //              インスタンス取得の際にベースとなるURLを設定する
 //        3. RetrofitクラスからServiceインターフェイスの実装クラスを生成する
+//          ------以下がonCreateの中------
 //        4. Service（実装クラス）からCallクラスを取得する
 //        5. CallクラスでHTTP通信を実行する
 //----------------------------------
