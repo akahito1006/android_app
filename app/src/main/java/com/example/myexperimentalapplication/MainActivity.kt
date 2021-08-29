@@ -74,8 +74,19 @@ class MainActivity : AppCompatActivity() {
         SubComponent.makeArray(rightTextView)
         SubComponent.makeArray(leftTextView)
 
-        for (item in list) {
-            item.text = "append some text"
-        }
+//        for (item in list) {
+//            item.text = "append some text"
+//        }
+
+//-----------Retrofitの使い方---------
+//        1. Serviceインターフェイスの定義；どのパスにどんなHTTPメソッドでアクセスするかを定義する
+//        2. Retrofitクラス；Builderクラスを通してインスタンスを取得する
+//              インスタンス取得の際にベースとなるURLを設定する
+//        3. RetrofitクラスからServiceインターフェイスの実装クラスを生成する
+//        4. Service（実装クラス）からCallクラスを取得する
+//        5. CallクラスでHTTP通信を実行する
+
+//        GETメソッドでHTTP通信する実装方法
+
     }
 }
