@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
 //-----------Retrofitの使い方---------
 //        1. Serviceインターフェイスの定義；どのパスにどんなHTTPメソッドでアクセスするかを定義する
-//        2. Retrofitクラス；Builderクラスを通してインスタンスを取得する
+//        2. Retrofitクラスのインスタンス化；Builderクラスを通してインスタンスを取得する
 //              インスタンス取得の際にベースとなるURLを設定する
 //        3. RetrofitクラスからServiceインターフェイスの実装クラスを生成する
 //        4. Service（実装クラス）からCallクラスを取得する
@@ -90,8 +90,7 @@ class MainActivity : AppCompatActivity() {
 //----------------------------------
 
 // MyService.ktより =>
-
-// Retroクラスのインスタンス化
+// 2.Retroクラスのインスタンス化
 //      Retrofit本体
     private val retrofit = Retrofit.Builder().apply {
         // baseUrlプロパティはokhttp3.HttpUrlでもOK
@@ -99,6 +98,8 @@ class MainActivity : AppCompatActivity() {
 // buildメソッドを呼び出しインスタンスを取得する
     }.build()
 
-//
+// 3.Service（実装クラス）の取得
+// サービスクラスの実装オブジェクト取得
+    private val service = retrofit.create(MyService::class.java)
 
 }

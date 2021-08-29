@@ -6,7 +6,7 @@ import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.http.*
 
-// Serviceの準備
+// 1.Serviceインターフェイスの定義
 interface MyService {
 
     @GET("posts")
