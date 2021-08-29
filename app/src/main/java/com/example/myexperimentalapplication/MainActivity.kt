@@ -4,12 +4,65 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity() {
+
+//-----------Retrofitの使い方---------
+// 参考；https://qiita.com/naoi/items/5036adc8d33638911deb
+//        1. Serviceインターフェイスの定義；どのパスにどんなHTTPメソッドでアクセスするかを定義する
+//        2. Retrofitクラスのインスタンス化；Builderクラスを通してインスタンスを取得する
+//              インスタンス取得の際にベースとなるURLを設定する
+//        3. RetrofitクラスからServiceインターフェイスの実装クラスを生成する
+//        4. Service（実装クラス）からCallクラスを取得する
+//        5. CallクラスでHTTP通信を実行する
+//----------------------------------
+
+    // MyService.ktより =>
+// 2.Retroクラスのインスタンス化
+//      Retrofit本体
+    private val retrofit = Retrofit.Builder().apply {
+        // baseUrlプロパティはokhttp3.HttpUrlでもOK
+        baseUrl("http://10.0.2.2:3000/")
+// buildメソッドを呼び出しインスタンスを取得する
+    }.build()
+
+    // 3.Service（実装クラス）の取得
+// サービスクラスの実装オブジェクト取得
+    private val service = retrofit.create(MyService::class.java)
+
+
+    private val scope = CoroutineScope(Dispatchers.IO)
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        fun onGetButtonClick(view: View) {
+        // 4. Callクラスの取得とHTTP通信
+            val get = service.getRawResponseForPosts()
+        // HTTP通信を行う2つのメソッドから選ぶ
+        // execute()；同期処理。ワーカスレッドで呼び出すことになる
+        // enqueue(Callback callback)；HTTP通信が終わった後の処理をCallbackクラスで渡す必要がある。コールバック内はMainスレッドで実行される
+        // 5. 今回は同期処理のため、取得したCallクラスのexecuteメソッドを呼び出す
+            scope.launch {
+                val responseBody = get.execute()
+                // レスポンスから文字列の取得
+                // 実行結果はokhttp3.RequestBodyで受け取るため、bodyメソッドでレスポンスの内容を取得する
+                // サイトにstringメソッドでJSON文字列を取得する
+                responseBody.body()?.let {
+                    myViewModel.result.postValue(it.string())
+                }
+            }
+        }
+
+
 
         val textView: TextView = findViewById(R.id.textArea)
 
@@ -79,27 +132,5 @@ class MainActivity : AppCompatActivity() {
 //            item.text = "append some text"
 //        }
     }
-
-//-----------Retrofitの使い方---------
-//        1. Serviceインターフェイスの定義；どのパスにどんなHTTPメソッドでアクセスするかを定義する
-//        2. Retrofitクラスのインスタンス化；Builderクラスを通してインスタンスを取得する
-//              インスタンス取得の際にベースとなるURLを設定する
-//        3. RetrofitクラスからServiceインターフェイスの実装クラスを生成する
-//        4. Service（実装クラス）からCallクラスを取得する
-//        5. CallクラスでHTTP通信を実行する
-//----------------------------------
-
-// MyService.ktより =>
-// 2.Retroクラスのインスタンス化
-//      Retrofit本体
-    private val retrofit = Retrofit.Builder().apply {
-        // baseUrlプロパティはokhttp3.HttpUrlでもOK
-        baseUrl("http://10.0.2.2:3000/")
-// buildメソッドを呼び出しインスタンスを取得する
-    }.build()
-
-// 3.Service（実装クラス）の取得
-// サービスクラスの実装オブジェクト取得
-    private val service = retrofit.create(MyService::class.java)
 
 }
