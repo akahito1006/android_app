@@ -25,10 +25,4 @@ interface MyService {
     // 戻り値はCall型にし、サーバーから受け取るデータの型をジェネリクスで指定する
 }
 
-// Retroクラスのインスタンス化
-//      Retrofit本体
-private val retrofit = Retrofit.Builder().apply {
-    // baseUrlプロパティはokhttp3.HttpUrlでもOK
-    baseUrl("http://10.0.2.2:3000/")
-// buildメソッドを呼び出しインスタンスを取得する
-}.build()
+// => MainActivity.ktへ

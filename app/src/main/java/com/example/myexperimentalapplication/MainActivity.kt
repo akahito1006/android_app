@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
 //        for (item in list) {
 //            item.text = "append some text"
 //        }
+    }
 
 //-----------Retrofitの使い方---------
 //        1. Serviceインターフェイスの定義；どのパスにどんなHTTPメソッドでアクセスするかを定義する
@@ -85,8 +87,18 @@ class MainActivity : AppCompatActivity() {
 //        3. RetrofitクラスからServiceインターフェイスの実装クラスを生成する
 //        4. Service（実装クラス）からCallクラスを取得する
 //        5. CallクラスでHTTP通信を実行する
+//----------------------------------
 
-//        GETメソッドでHTTP通信する実装方法
+// MyService.ktより =>
 
-    }
+// Retroクラスのインスタンス化
+//      Retrofit本体
+    private val retrofit = Retrofit.Builder().apply {
+        // baseUrlプロパティはokhttp3.HttpUrlでもOK
+        baseUrl("http://10.0.2.2:3000/")
+// buildメソッドを呼び出しインスタンスを取得する
+    }.build()
+
+//
+
 }
