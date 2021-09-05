@@ -3,18 +3,15 @@ package com.example.myexperimentalapplication
 class Class
 
 // the visibility is set to "public" by default
-class User(email: String, password: String, var age: Int) {
-
-    var password: String = password // "field"はプロパティ自身を指す。"Backing Field"という
-        get() { return field }
-        set(value) { field = value }
+// passwordのvisibilityをprivateにしたい場合はコンストラクター上でprivateを追加すればよい
+class User(email: String, private val password: String, var age: Int) {
 
     // コンストラクターに記述した名前からvalを除くと、プロパティではなくパラメータになる
     // emailプロパティを定義し、コンストラクター上の同名のパラメータでイニシャライズする
     var email: String = email
         // getterとsetterのふるまいを変更する
         // statementを続けて記述するには、;を入れて区切る
-        get() { println("User is getting his email."); return field }
+        get() { println("User is getting his email."); return field } // "field"はプロパティ自身を指す。"Backing Field"という
         set(value) { println("User is setting his email"); field = value }
         // emailプロパティのgetterとsetterをカスタマイズできた。こうすれば、今後コンソールデバッグ用のコードを書く必要がない
 }
