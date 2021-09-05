@@ -12,3 +12,7 @@ class {
 // protected: only be inside the class and its subClass
 // internal: only be inside the same module; set of Kotlin files compiled together (gradle, Maven)
 // public: visible everywhere by everyone
+
+// hot to use class as an object on Kotlin
+val user = User("hello@email.com", "azerty", "27")
+
