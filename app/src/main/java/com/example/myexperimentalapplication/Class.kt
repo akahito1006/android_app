@@ -40,6 +40,21 @@ fun main(args: Array<String>) {
 // internal:    inside the same module; set of Kotlin files compiled together (gradle, Maven)
 // public:      visible everywhere by everyone
 
+// declare variables here!
 
-val user = User("hello@email.com", "azerty", 27)
+class Course(private val identifier: String, title: String, val duration: Int, val state: String) {
+    val title = title
+        get() { println("the course names '${field}'"); return field }
+}
 
+
+fun main(args: Array<String>) {
+
+    // write code here!
+    println("Welcome OpenClassrooms Students!")
+
+    val course = Course("A01", "how to make people happy by programming", 45, "available")
+
+    course.title
+
+}
