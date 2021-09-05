@@ -42,10 +42,12 @@ fun main(args: Array<String>) {
 
 // declare variables here!
 
-class Course(private val identifier: String, title: String, val duration: Int, val state: String) {
-    val title = title
-        get() { println("the course names '${field}'"); return field }
-}
+class Course(
+    private val id: String,
+    var title: String,
+    val duration: Int,
+    var isActive: Boolean
+    )
 
 
 fun main(args: Array<String>) {
@@ -55,6 +57,6 @@ fun main(args: Array<String>) {
 
     val course = Course("A01", "how to make people happy by programming", 45, "available")
 
-    course.title
+    println("the course names '${course.title}'")
 
 }
