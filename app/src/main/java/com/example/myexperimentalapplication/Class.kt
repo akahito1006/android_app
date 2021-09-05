@@ -16,7 +16,7 @@ class User(email: String, password: String, var age: Int) {
         // statementを続けて記述するには、;を入れて区切る
         get() { println("User is getting his email."); return field }
         set(value) { println("User is setting his email"); field = value }
-        // emailプロパティのgetterとsetterをカスタマイズできた
+        // emailプロパティのgetterとsetterをカスタマイズできた。こうすれば、今後コンソールデバッグ用のコードを書く必要がない
 }
 
 fun main(args: Array<String>) {
