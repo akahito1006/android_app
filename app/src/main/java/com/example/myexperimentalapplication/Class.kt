@@ -3,11 +3,20 @@ package com.example.myexperimentalapplication
 class Class
 
 // the visibility is set to "public" by default
-class User(var email: String, password: String, var age: Int) {
+class User(email: String, password: String, var age: Int) {
 
-    var password: String = password // "field"
+    var password: String = password // "field"はプロパティ自身を指す。"Backing Field"という
         get() { return field }
         set(value) { field = value }
+
+    // コンストラクターに記述した名前からvalを除くと、プロパティではなくパラメータになる
+    // emailプロパティを定義し、コンストラクター上の同名のパラメータでイニシャライズする
+    var email: String = email
+        // getterとsetterのふるまいを変更する
+        // statementを続けて記述するには、;を入れて区切る
+        get() { println("User is getting his email."); return field }
+        set(value) { println("User is setting his email"); field = value }
+        // emailプロパティのgetterとsetterをカスタマイズできた
 }
 
 fun main(args: Array<String>) {
