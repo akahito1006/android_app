@@ -15,21 +15,21 @@ class User(email: String, private val password: String, var age: Int) {
         set(value) { println("User is setting his email"); field = value }
         // emailプロパティのgetterとsetterをカスタマイズできた。こうすれば、今後コンソールデバッグ用のコードを書く必要がない
 }
-
-fun main(args: Array<String>) {
-
-    // hot to use class as an object on Kotlin
-    val user = User("hello@email.com", "azerty", 27)
-
-    // Setter; to modify the value
-    user.password = "123456"
-    // Getter; to get the value
-    user.password
-
-    // this modification is denied because of using the keyword "val"; immutable
-    user.email = "" // val cannot be reassigned
-
-}
+//
+//fun main(args: Array<String>) {
+//
+//    // hot to use class as an object on Kotlin
+//    val user = User("hello@email.com", "azerty", 27)
+//
+//    // Setter; to modify the value
+//    user.password = "123456"
+//    // Getter; to get the value
+//    user.password
+//
+//    // this modification is denied because of using the keyword "val"; immutable
+//    user.email = "" // val cannot be reassigned
+//
+//}
 
 // Kotlin classはデフォルトでpublic
 
@@ -55,7 +55,7 @@ fun main(args: Array<String>) {
     // write code here!
     println("Welcome OpenClassrooms Students!")
 
-    val course = Course("A01", "how to make people happy by programming", 45, "available")
+    val course = Course("A01", "how to make people happy by programming", 45, true)
 
     println("the course names '${course.title}'")
 
