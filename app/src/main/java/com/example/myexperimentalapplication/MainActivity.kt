@@ -134,4 +134,20 @@ class MainActivity : AppCompatActivity() {
 //        }
     }
 
+    class Course(
+        private val id: String,
+        var title: String,
+        val duration: Int,
+        var isActive: Boolean
+    )
+
+    fun main2(args: Array<String>) {
+        println("Hello Openclassrooms students !")
+
+        val kotlinForTrolls = Course("K10", "Kotlin for trolls - Be a better troll.", 10, false)
+
+        println("Check out my new course : ${kotlinForTrolls.title}")
+    }
+
+
 }
